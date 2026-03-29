@@ -12,6 +12,7 @@ A web-based network scanner that periodically scans your network with nmap to di
 - **MAC Address Lookup**: Attempts to identify device vendors
 - **Real-time Updates**: Manual scan trigger and auto-refresh
 - **Persistent Storage**: Results are saved to JSON for persistence across container restarts
+- **Slack Notifications**: Send scan results to Slack (optional)
 
 ## Requirements
 
@@ -88,6 +89,31 @@ Or set via environment variable:
 environment:
   - SCAN_INTERVAL=1800  # 30 minutes
 ```
+
+### Slack Notifications (Optional)
+
+To receive scan results via Slack:
+
+1. **Create a Slack Incoming Webhook**:
+   - Go to your Slack workspace → Settings → App Management
+   - Create a new app or use an existing one
+   - Enable "Incoming Webhooks"
+   - Add a new webhook and copy the URL
+
+2. **Set the webhook URL** in `app.py`:
+   ```python
+   SLACK_WEBHOOK_URL = os.getenv('SLACK_WEBHOOK_URL', '')
+   ```
+
+3. **Or set via environment variable** in docker-compose.yml:
+   ```yaml
+   environment:
+     - SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+   ```
+
+4. **The scanner will post notifications** to your Slack channel after each scan completes.
+
+**Note**: Keep your webhook URL secure. Don't commit it to version control—use environment variables instead.
 
 ## Important Notes
 

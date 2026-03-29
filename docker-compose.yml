@@ -1,0 +1,17 @@
+services:
+  network-scanner:
+    build: .
+    container_name: network-scanner
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./scan_data:/app/scan_data
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    restart: unless-stopped
+    environment:
+      - NETWORK=192.168.12.0/24
+      - SCAN_INTERVAL=3600
+      - TZ=America/Los_Angeles

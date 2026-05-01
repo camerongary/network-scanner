@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 import nmap
 import json
 import threading
@@ -15,7 +16,7 @@ app = Flask(__name__)
 NETWORK = "192.168.12.0/24"  # Network to scan
 SCAN_INTERVAL = 3600  # Scan every hour (in seconds)
 RESULTS_FILE = "/app/scan_data/results.json"
-   SLACK_WEBHOOK_URL = os.getenv('SLACK_WEBHOOK_URL', '')
+SLACK_WEBHOOK_URL = os.getenv('SLACK_WEBHOOK_URL', '')
 # Global state
 scan_data = {
     "devices": [],

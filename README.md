@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/icon.png" width="128" alt="Network Scanner icon">
+</p>
+
 # Network Scanner - Docker Container
 
 A comprehensive web-based network scanner that periodically scans your network with nmap to discover devices, detect their OS, identify open services, and provides historical trends with Slack notifications.
